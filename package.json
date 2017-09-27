@@ -1,0 +1,45 @@
+{
+  "name": "see-it",
+  "version": "1.0.0",
+  "description": "A simple React app displaying images from the Imgur API",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --inline --hot --open",
+    "prettier": "prettier --single-quote --write ./app/**/*.js",
+    "lint": "eslint **/*.js",
+    "test": "mocha --require mocha.init.js --compilers js:babel-core/register app/__tests__/*.test.js"
+  },
+  "keywords": [
+    "React.js"
+  ],
+  "author": "Maciek Maslowski",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "styled-components": "^2.1.1",
+    "styled-tools": "^0.1.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "es6-promise": "^4.1.1",
+    "eslint": "^4.4.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-react": "^7.2.1",
+    "expect": "21.0.2",
+    "html-webpack-plugin": "^2.26.0",
+    "isomorphic-fetch": "^2.2.1",
+    "mocha": "3.5.3",
+    "prettier": "^1.5.3",
+    "react-redux": "5.0.6",
+    "redux": "3.7.2",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
