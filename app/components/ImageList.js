@@ -1,20 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Loader from './Loader';
+import Header from './Header';
 import Image from './Image';
+import Loader from './Loader';
 
-const ImageList = ({ images, isLoading }) => {
+const ImageList = ({ category, images, isLoading, setCategory }) => {
   return (
-    <ImageListContainer>
-      {isLoading && !images.length ? <Loader initial /> : null}
-      {!isLoading &&
-        images.map(image => <Image key={image.id} src={image.urls.raw} />)}
-    </ImageListContainer>
+    <Container>
+      <Header category={category} setCategory={setCategory} />
+      <ImageListContainer>
+        {isLoading && !images.length ? <Loader initial /> : null}
+        {!isLoading &&
+          images.map(image => <Image key={image.id} src={image.urls.raw} />)}
+      </ImageListContainer>
+    </Container>
   );
 };
 
 export default ImageList;
+
+const Container = styled.div`width: 100%;`;
 
 const ImageListContainer = styled.div`
   position: relative;

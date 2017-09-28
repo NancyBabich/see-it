@@ -60,7 +60,7 @@ const ImageContainer = styled.div`
   width: 300px;
   height: ${ifProp('isLoaded', 'auto', '300px')};
   margin: 20px 20px;
-  animation: ${ifProp('isLoaded', 'none', `${pulse} 2s infinite`)};
+  animation: ${ifProp('isLoaded', 'none', `${pulse} 2s infinite ease`)};
 
   &:hover {
     cursor: pointer;

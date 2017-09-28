@@ -6,6 +6,7 @@ export default class ImagesContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      category: 'cities',
       images: [],
       isLoading: true,
       page: null,
@@ -15,7 +16,7 @@ export default class ImagesContainer extends Component {
 
   componentDidMount() {
     this.distributeEventListeners('add');
-    this.fetchImages(1);
+    this.fetchImages(this.state.category, 1);
   }
 
   componentWillUnmount() {
@@ -28,11 +29,11 @@ export default class ImagesContainer extends Component {
       : window.removeEventListener('scroll', this.handleScroll, false);
   };
 
-  fetchImages = page => {
+  fetchImages = (category, page) => {
     const url = 'https://api.unsplash.com/search/photos';
-    const perPage = 10;
+    const perPage = 5;
     const request = new Request(
-      `${url}/?query=dog&page=${page}&per_page=${perPage}`,
+      `${url}/?query=${category}&page=${page}&per_page=${perPage}`,
       {
         method: 'GET',
         headers: new Headers({
@@ -68,13 +69,24 @@ export default class ImagesContainer extends Component {
       this.state.images.length &&
       !this.state.isLoading
     ) {
-      this.fetchImages(this.state.page + 1);
+      this.fetchImages(this.state.category, this.state.page + 1);
     }
+  };
+
+  setCategory = category => {
+    this.setState({ images: [], category, isLoading: true });
+    this.fetchImages(category, 1);
   };
 
   render() {
     return (
-      <ImageList images={this.state.images} isLoading={this.state.isLoading} />
+      <ImageList
+        category={this.state.category}
+        handleQuery={this.handleQuery}
+        images={this.state.images}
+        isLoading={this.state.isLoading}
+        setCategory={this.setCategory}
+      />
     );
   }
 }
