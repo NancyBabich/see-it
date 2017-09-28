@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { ifProp } from 'styled-tools';
 
+import Colors from '../consts/colors';
+
 export default class Image extends Component {
   constructor(props) {
     super(props);
@@ -31,15 +33,15 @@ export default class Image extends Component {
 
 const pulse = keyframes`
     0% {
-        background-color: #ECECEC;
+        background-color: ${Colors.lightGray};
     }
 
     50% {
-        background-color: #BCBCBC;
+        background-color: ${Colors.gray};
     }
 
     100% {
-        background-color: #ECECEC;
+        background-color: ${Colors.lightGray};
     }
 `;
 
@@ -47,7 +49,7 @@ const StyledImg = styled.img`
   width: 300px;
   height: auto;
   display: ${ifProp('isLoaded', 'block', 'none')};
-  border: solid 1px #bcbcbc;
+  border: solid 1px ${Colors.gray};
   padding: 15px;
 `;
 

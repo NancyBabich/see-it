@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { ifProp } from 'styled-tools';
 
-//import Colors from '../consts/colors';
+import Colors from '../consts/colors';
 
 const Loader = ({ initial }) => <Spinner initial={initial} />;
 
@@ -24,8 +24,8 @@ const Spinner = styled.div`
   bottom: ${ifProp('initial', 'auto', '10px')};
   width: 50px;
   height: 50px;
-  border: 5px solid rgba(0, 0, 0, 0.25);
-  border-top: 5px solid red;
+  border: 5px solid ${Colors.gray};
+  border-top: 5px solid ${Colors.lightGray};
   border-radius: 50%;
   animation: ${rotate} 0.75s infinite ease;
 `;
