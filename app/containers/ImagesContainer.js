@@ -14,8 +14,19 @@ export default class ImagesContainer extends Component {
   }
 
   componentDidMount() {
+    this.distributeEventListeners('add');
     this.fetchImages(1);
   }
+
+  componentWillUnmount() {
+    this.distributeEventListeners('remove');
+  }
+
+  distributeEventListeners = action => {
+    action === 'add'
+      ? window.addEventListener('scroll', this.handleScroll, false)
+      : window.removeEventListener('scroll', this.handleScroll, false);
+  };
 
   fetchImages = page => {
     const url = 'https://api.unsplash.com/search/photos';
@@ -49,6 +60,16 @@ export default class ImagesContainer extends Component {
             }));
       })
       .catch(err => console.log(err));
+  };
+
+  handleScroll = () => {
+    if (
+      window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+      this.state.images.length &&
+      !this.state.isLoading
+    ) {
+      this.fetchImages(this.state.page + 1);
+    }
   };
 
   render() {
