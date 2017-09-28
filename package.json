@@ -1,7 +1,7 @@
 {
   "name": "see-it",
   "version": "1.0.0",
-  "description": "A simple React app displaying images from the Imgur API",
+  "description": "A simple React app displaying images from the Unsplash API",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --inline --hot --open",
