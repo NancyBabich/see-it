@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { ifProp } from 'styled-tools';
 
 import ImageList from '../components/ImageList';
 
@@ -8,15 +6,22 @@ export default class ImagesContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: null
+      images: [],
+      isLoading: true,
+      page: null,
+      totalPages: null
     };
   }
 
   componentDidMount() {
+    this.fetchImages(1);
+  }
+
+  fetchImages = page => {
     const url = 'https://api.unsplash.com/search/photos';
     const perPage = 10;
     const request = new Request(
-      `${url}/?query=dog&page=1&per_page=${perPage}`,
+      `${url}/?query=dog&page=${page}&per_page=${perPage}`,
       {
         method: 'GET',
         headers: new Headers({
@@ -27,15 +32,28 @@ export default class ImagesContainer extends Component {
     );
 
     fetch(request)
+      .then(res => res.json())
       .then(res => {
-        return res.json();
+        page === 1
+          ? this.setState({
+              images: res.results,
+              page,
+              totalPages: res.total_pages,
+              isLoading: false
+            })
+          : this.setState(prevState => ({
+              images: [...prevState.images, ...res.results],
+              page,
+              totalPages: res.total_pages,
+              isLoading: false
+            }));
       })
-      .then(res => {
-        this.setState({ images: res.results });
-      });
-  }
+      .catch(err => console.log(err));
+  };
 
   render() {
-    return <ImageList images={this.state.images} />;
+    return (
+      <ImageList images={this.state.images} isLoading={this.state.isLoading} />
+    );
   }
 }

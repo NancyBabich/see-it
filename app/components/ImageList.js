@@ -1,17 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ifProp } from 'styled-tools';
 
 import Loader from './Loader';
 import Image from './Image';
 
-const ImageList = ({ images }) => (
-  <ImageListContainer>
-    {!images && <Loader initial />}
-    {images &&
-      images.map(image => <Image key={image.id} src={image.urls.raw} />)}
-  </ImageListContainer>
-);
+const ImageList = ({ images, isLoading }) => {
+  return (
+    <ImageListContainer>
+      {isLoading && !images.length ? <Loader initial /> : null}
+      {!isLoading && (
+        <div>
+          {images.map(image => <Image key={image.id} src={image.urls.raw} />)}
+        </div>
+      )}
+    </ImageListContainer>
+  );
+};
 
 export default ImageList;
 
