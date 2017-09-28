@@ -10,6 +10,7 @@ export default class ImagesContainer extends Component {
       images: [],
       isLoading: true,
       page: null,
+      status: null,
       totalPages: null
     };
   }
@@ -44,7 +45,10 @@ export default class ImagesContainer extends Component {
     );
 
     fetch(request)
-      .then(res => res.json())
+      .then(res => {
+        this.setState({ status: res.status });
+        return res.json();
+      })
       .then(res => {
         page === 1
           ? this.setState({
@@ -86,6 +90,7 @@ export default class ImagesContainer extends Component {
         images={this.state.images}
         isLoading={this.state.isLoading}
         setCategory={this.setCategory}
+        status={this.state.status}
       />
     );
   }
