@@ -8,11 +8,8 @@ const ImageList = ({ images, isLoading }) => {
   return (
     <ImageListContainer>
       {isLoading && !images.length ? <Loader initial /> : null}
-      {!isLoading && (
-        <div>
-          {images.map(image => <Image key={image.id} src={image.urls.raw} />)}
-        </div>
-      )}
+      {!isLoading &&
+        images.map(image => <Image key={image.id} src={image.urls.raw} />)}
     </ImageListContainer>
   );
 };
@@ -20,8 +17,11 @@ const ImageList = ({ images, isLoading }) => {
 export default ImageList;
 
 const ImageListContainer = styled.div`
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 100vh;
 `;
