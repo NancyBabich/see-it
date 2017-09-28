@@ -1,26 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { ifProp } from 'styled-tools';
 
-export default class Category extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isActive: false
-    };
-  }
+const Category = ({ category, option, setCategory }) => {
+  const isActive = option === category;
 
-  handleClick = () => this.props.setCategory(this.props.option);
+  return (
+    <StyledSpan onClick={() => setCategory(option)} isActive={isActive}>
+      {option}
+    </StyledSpan>
+  );
+};
 
-  render() {
-    const isActive = this.props.option === this.props.category;
-    return (
-      <StyledSpan onClick={this.handleClick} isActive={isActive}>
-        {this.props.option}
-      </StyledSpan>
-    );
-  }
-}
+export default Category;
 
 const StyledSpan = styled.span`
   font-weight: ${ifProp('isActive', '700', 'normal')};

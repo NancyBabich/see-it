@@ -6,7 +6,7 @@ import Category from './Category';
 const Header = ({ category, setCategory }) => (
   <HeaderContainer>
     Show me{' '}
-    <Category category={category} option="city" setCategory={setCategory} />,{' '}
+    <Category category={category} option="cities" setCategory={setCategory} />,{' '}
     <Category
       category={category}
       option="dogs"
