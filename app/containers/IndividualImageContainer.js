@@ -7,7 +7,6 @@ export default class IndividualImageContainer extends Component {
     super(props);
     this.state = {
       author: '',
-
       isLoading: true,
       likes: null,
       src: '',
@@ -17,7 +16,7 @@ export default class IndividualImageContainer extends Component {
   }
 
   componentDidMount() {
-    //window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
     this.fbAsyncInit();
     this.fetchImage(this.props.match.params.imageId);
   }

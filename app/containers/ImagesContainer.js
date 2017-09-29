@@ -8,6 +8,7 @@ export default class ImagesContainer extends Component {
     this.state = {
       category: 'cities',
       images: [],
+      isAllDisplayed: false,
       isLoading: true,
       page: null,
       status: null,
@@ -31,40 +32,45 @@ export default class ImagesContainer extends Component {
   };
 
   fetchImages = (category, page) => {
-    const url = 'https://api.unsplash.com/search/photos';
-    const perPage = 9;
-    const request = new Request(
-      `${url}/?query=${category}&page=${page}&per_page=${perPage}`,
-      {
-        method: 'GET',
-        headers: new Headers({
-          Authorization:
-            'Client-ID e6265d8a013e80cb7c27328768e0aa508ce426d36e58106d377a5d137e421c59'
-        })
-      }
-    );
+    if (!this.state.isAllDisplayed) {
+      const url = 'https://api.unsplash.com/search/photos';
+      const perPage = 9;
+      const request = new Request(
+        `${url}/?query=${category}&page=${page}&per_page=${perPage}`,
+        {
+          method: 'GET',
+          headers: new Headers({
+            Authorization:
+              'Client-ID e6265d8a013e80cb7c27328768e0aa508ce426d36e58106d377a5d137e421c59'
+          })
+        }
+      );
 
-    fetch(request)
-      .then(res => {
-        this.setState({ status: res.status });
-        return res.json();
-      })
-      .then(res => {
-        page === 1
-          ? this.setState({
-              images: res.results,
-              page,
-              totalPages: res.total_pages,
-              isLoading: false
-            })
-          : this.setState(prevState => ({
-              images: [...prevState.images, ...res.results],
-              page,
-              totalPages: res.total_pages,
-              isLoading: false
-            }));
-      })
-      .catch(err => console.log(err));
+      fetch(request)
+        .then(res => {
+          this.setState({ status: res.status });
+          return res.json();
+        })
+        .then(res => {
+          const isAllDisplayed = res.total_pages === page;
+          page === 1
+            ? this.setState({
+                images: res.results,
+                page,
+                totalPages: res.total_pages,
+                isLoading: false,
+                isAllDisplayed
+              })
+            : this.setState(prevState => ({
+                images: [...prevState.images, ...res.results],
+                page,
+                totalPages: res.total_pages,
+                isLoading: false,
+                isAllDisplayed
+              }));
+        })
+        .catch(err => console.log(err));
+    }
   };
 
   handleScroll = () => {
