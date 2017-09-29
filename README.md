@@ -1,5 +1,5 @@
 # see-it
-A simple React app displaying images from the Imgur API :camera:
+A simple React app displaying images from the Unsplash API :camera:
 
 ## Usage
 To use, simply run </br></br>
