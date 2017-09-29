@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import Colors from '../consts/colors';
+import Colors from '../../consts/colors';
 
 export default class SearchBar extends Component {
   constructor(props) {
@@ -37,25 +37,33 @@ export default class SearchBar extends Component {
   }
 }
 
-const Input = styled.input`width: 20rem;`;
+const Input = styled.input`
+  width: 20rem;
+  height: 2rem;
+  border: 1px solid ${Colors.darkGray};
+  text-align: center;
+`;
 
 const SearchBarContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 `;
 
 const StyledButton = styled.button`
   display: block;
   margin-top: 10px;
   width: 20rem;
+  height: 2rem;
   background-color: ${Colors.white};
-  border: solid 1px ${Colors.gray};
+  border: solid 1px ${Colors.darkGray};
   outline: none;
   color: ${Colors.darkGray};
 
   &:hover {
     cursor: pointer;
-    background-color: ${Colors.lightGray};
+    color: ${Colors.gray};
+    border: solid 1px ${Colors.gray};
   }
 `;

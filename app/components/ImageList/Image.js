@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { ifProp } from 'styled-tools';
 
-import Colors from '../consts/colors';
+import Colors from '../../consts/colors';
 
 export default class Image extends Component {
   constructor(props) {

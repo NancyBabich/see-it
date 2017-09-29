@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ImageList from '../components/ImageList';
+import ImageList from '../components/ImageList/ImageList';
 
 export default class ImagesContainer extends Component {
   constructor(props) {

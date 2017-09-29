@@ -1,5 +1,7 @@
 import { injectGlobal } from 'styled-components';
 
+import Colors from '../consts/colors';
+
 injectGlobal`
     * {
       margin: 0;
@@ -9,5 +11,6 @@ injectGlobal`
 
     body {
       font-family: 'Open Sans';
+      color: ${Colors.darkGray};
     }
 `;
