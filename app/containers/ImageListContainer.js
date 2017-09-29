@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { throttle } from 'lodash';
 
 import ImageList from '../components/ImageList/ImageList';
 
 export default class ImagesContainer extends Component {
   constructor(props) {
     super(props);
+    this.handleScroll = throttle(this.handleScroll, 300);
     this.state = {
       category: 'cities',
       images: [],
