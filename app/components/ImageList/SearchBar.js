@@ -45,6 +45,10 @@ const Input = styled.input`
   height: 2rem;
   border: 1px solid ${Colors.darkGray};
   text-align: center;
+
+  @media screen and (max-width: 365px) {
+    width: 15rem;
+  }
 `;
 
 const SearchBarContainer = styled.div`
@@ -68,5 +72,9 @@ const StyledButton = styled.button`
     cursor: pointer;
     color: ${Colors.gray};
     border: solid 1px ${Colors.gray};
+  }
+
+  @media screen and (max-width: 365px) {
+    width: 15rem;
   }
 `;

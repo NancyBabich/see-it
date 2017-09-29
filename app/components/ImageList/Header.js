@@ -20,8 +20,6 @@ const HeaderContainer = styled.div`
   height: 200px;
   padding: 20px 0;
   background-color: ${Colors.white};
-  border-bottom: 2px solid ${Colors.lightGray};
-  //box-shadow: 0px 2px 5px 0px rgba(50, 50, 50, 0.47);
   text-align: center;
   text-transform: uppercase;
   font-size: 2rem;

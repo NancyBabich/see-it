@@ -67,6 +67,11 @@ const ImageContainer = styled.div`
   &:hover {
     cursor: pointer;
   }
+
+  @media screen and (max-width: 350px) {
+    width: 250px;
+    height: ${ifProp('isLoaded', 'auto', '250px')};
+  }
 `;
 
 const StyledImg = styled.img`
@@ -75,4 +80,12 @@ const StyledImg = styled.img`
   display: ${ifProp('isLoaded', 'block', 'none')};
   border: solid 1px ${Colors.gray};
   padding: 15px;
+
+  @media screen and (max-width: 365px) {
+    border: none;
+  }
+
+  @media screen and (max-width: 350px) {
+    width: 250px;
+  }
 `;
