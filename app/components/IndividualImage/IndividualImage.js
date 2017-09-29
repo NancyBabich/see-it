@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Colors from '../../consts/colors';
 import Loader from '../Loader';
 
 const IndividualImage = ({
@@ -22,12 +23,9 @@ const IndividualImage = ({
           Original size: {width} x {height}px
         </StyledDiv>
         <StyledDiv>Likes: {likes}</StyledDiv>
-        <StyledDiv>
-          Share the image on{' '}
-          <ShareButton onClick={() => shareOnFacebook(src)}>
-            Facebook
-          </ShareButton>{' '}
-        </StyledDiv>
+        <ShareButton onClick={() => shareOnFacebook(src)}>
+          Share the image on Facebook
+        </ShareButton>
       </StyledContainer>
     ) : null}
   </StyledContainer>
@@ -41,9 +39,17 @@ const Image = styled.img`
   margin: 50px auto 10px auto;
 `;
 
-const ShareButton = styled.span`
+const ShareButton = styled.div`
+  border: solid 1px ${Colors.darkGray};
+  padding: 10px 5px 10px 5px;
+  margin: 20px auto;
+  width: 300px;
+  text-align: center;
+
   &:hover {
     cursor: pointer;
+    border: solid 1px ${Colors.gray};
+    color: ${Colors.gray};
   }
 `;
 
