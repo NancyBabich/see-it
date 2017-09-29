@@ -18,9 +18,7 @@ const rotate = keyframes`
 `;
 
 const Spinner = styled.div`
-  position: absolute;
-  left: 50%;
-  bottom: ${ifProp('initial', '-150px', '10px')};
+  margin: ${ifProp('initial', '150px auto 0 auto', '10px auto 0 auto')};
   width: 50px;
   height: 50px;
   border: 5px solid ${Colors.gray};
