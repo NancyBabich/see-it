@@ -1,5 +1,7 @@
 # see-it
-A simple React app displaying images from the Unsplash API :camera:
+A simple React app displaying images from the Unsplash API :camera:</br></br>
+By default, the app displays the images with the tag "cities."</br></br>
+Using the API is free, but the number of API calls one can perform is 50 per hour.
 
 ## Usage
 To use, simply run </br></br>
