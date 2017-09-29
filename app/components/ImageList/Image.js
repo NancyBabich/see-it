@@ -20,17 +20,20 @@ export default class Image extends Component {
   };
 
   render() {
+    const { id, src } = this.props;
+    const { isLoaded } = this.state;
+
     return (
       <Link
         to={{
-          pathname: `/photos/${this.props.id}`
+          pathname: `/photos/${id}`
         }}
       >
-        <ImageContainer isLoaded={this.state.isLoaded} id={this.props.id}>
+        <ImageContainer isLoaded={isLoaded} id={id}>
           <StyledImg
-            isLoaded={this.state.isLoaded}
+            isLoaded={isLoaded}
             onLoad={this.handleImageLoad}
-            src={this.props.src}
+            src={src}
           />
         </ImageContainer>
       </Link>

@@ -16,16 +16,19 @@ export default class SearchBar extends Component {
   };
 
   handleSubmit = e => {
+    const { setCategory } = this.props;
+    const { input } = this.state;
     e.preventDefault();
-    this.props.setCategory(this.state.input);
+    setCategory(input);
   };
 
   render() {
+    const { value } = this.state;
     return (
       <SearchBarContainer>
         <form onSubmit={this.handleSubmit}>
           <Input
-            value={this.state.value}
+            value={value}
             type="text"
             placeholder="Search for photos"
             onChange={this.handleChange}

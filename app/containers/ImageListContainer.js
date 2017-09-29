@@ -91,14 +91,16 @@ export default class ImagesContainer extends Component {
   };
 
   render() {
+    const { category, images, isLoading, status } = this.state;
+
     return (
       <ImageList
-        category={this.state.category}
+        category={category}
         handleQuery={this.handleQuery}
-        images={this.state.images}
-        isLoading={this.state.isLoading}
+        images={images}
+        isLoading={isLoading}
         setCategory={this.setCategory}
-        status={this.state.status}
+        status={status}
       />
     );
   }
