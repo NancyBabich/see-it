@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
+import fbAsyncInit from '../helpers/fbAsyncInit';
 import IndividualImage from '../components/IndividualImage/IndividualImage';
+import shareOnFacebook from '../helpers/shareOnFacebook';
 
 export default class IndividualImageContainer extends Component {
   constructor(props) {
@@ -17,31 +19,9 @@ export default class IndividualImageContainer extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    this.fbAsyncInit();
+    fbAsyncInit();
     this.fetchImage(this.props.match.params.imageId);
   }
-
-  fbAsyncInit = () => {
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId: 266524790526468,
-        xfbml: true,
-        version: 'v2.1'
-      });
-    };
-
-    (function(d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = '//connect.facebook.net/en_US/sdk.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
-  };
 
   fetchImage = id => {
     const url = `https://api.unsplash.com/photos/${id}`;
@@ -68,17 +48,6 @@ export default class IndividualImageContainer extends Component {
       .catch(err => console.log(err));
   };
 
-  shareOnFacebook = src => {
-    FB.ui(
-      {
-        method: 'share',
-        display: 'popup',
-        href: src
-      },
-      function(response) {}
-    );
-  };
-
   render() {
     const { author, height, src, width, isLoading, likes } = this.state;
     return (
@@ -88,7 +57,7 @@ export default class IndividualImageContainer extends Component {
         isLoading={isLoading}
         likes={likes}
         src={src}
-        shareOnFacebook={this.shareOnFacebook}
+        shareOnFacebook={shareOnFacebook}
         width={width}
       />
     );
