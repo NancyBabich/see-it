@@ -18,8 +18,31 @@ export default class IndividualImageContainer extends Component {
 
   componentDidMount() {
     //window.scrollTo(0, 0);
+    this.fbAsyncInit();
     this.fetchImage(this.props.match.params.imageId);
   }
+
+  fbAsyncInit = () => {
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: 266524790526468,
+        xfbml: true,
+        version: 'v2.1'
+      });
+    };
+
+    (function(d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = '//connect.facebook.net/en_US/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
+  };
 
   fetchImage = id => {
     const url = `https://api.unsplash.com/photos/${id}`;
@@ -36,7 +59,6 @@ export default class IndividualImageContainer extends Component {
       .then(image => {
         this.setState({
           author: image.user.first_name,
-
           likes: image.likes,
           src: image.urls.raw,
           width: image.width,
@@ -45,6 +67,17 @@ export default class IndividualImageContainer extends Component {
         });
       })
       .catch(err => console.log(err));
+  };
+
+  shareOnFacebook = src => {
+    FB.ui(
+      {
+        method: 'share',
+        display: 'popup',
+        href: src
+      },
+      function(response) {}
+    );
   };
 
   render() {
@@ -56,6 +89,7 @@ export default class IndividualImageContainer extends Component {
         isLoading={isLoading}
         likes={likes}
         src={src}
+        shareOnFacebook={this.shareOnFacebook}
         width={width}
       />
     );

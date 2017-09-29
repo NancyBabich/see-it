@@ -3,7 +3,15 @@ import styled from 'styled-components';
 
 import Loader from '../Loader';
 
-const IndividualImage = ({ author, height, src, width, isLoading, likes }) => (
+const IndividualImage = ({
+  author,
+  height,
+  src,
+  width,
+  isLoading,
+  likes,
+  shareOnFacebook
+}) => (
   <StyledContainer>
     {isLoading && <Loader initial />}
     {!isLoading && src ? (
@@ -14,6 +22,12 @@ const IndividualImage = ({ author, height, src, width, isLoading, likes }) => (
           Original size: {width} x {height}px
         </StyledDiv>
         <StyledDiv>Likes: {likes}</StyledDiv>
+        <StyledDiv>
+          Share the image on{' '}
+          <ShareButton onClick={() => shareOnFacebook(src)}>
+            Facebook
+          </ShareButton>{' '}
+        </StyledDiv>
       </StyledContainer>
     ) : null}
   </StyledContainer>
@@ -25,6 +39,12 @@ const Image = styled.img`
   display: block;
   width: 500px;
   margin: 50px auto 10px auto;
+`;
+
+const ShareButton = styled.span`
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const StyledContainer = styled.div`
