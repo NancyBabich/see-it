@@ -32,7 +32,7 @@ export default class ImagesContainer extends Component {
 
   fetchImages = (category, page) => {
     const url = 'https://api.unsplash.com/search/photos';
-    const perPage = 5;
+    const perPage = 9;
     const request = new Request(
       `${url}/?query=${category}&page=${page}&per_page=${perPage}`,
       {

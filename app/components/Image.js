@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { ifProp } from 'styled-tools';
 
@@ -20,13 +21,19 @@ export default class Image extends Component {
 
   render() {
     return (
-      <ImageContainer isLoaded={this.state.isLoaded}>
-        <StyledImg
-          isLoaded={this.state.isLoaded}
-          onLoad={this.handleImageLoad}
-          src={this.props.src}
-        />
-      </ImageContainer>
+      <Link
+        to={{
+          pathname: `/photos/${this.props.id}`
+        }}
+      >
+        <ImageContainer isLoaded={this.state.isLoaded} id={this.props.id}>
+          <StyledImg
+            isLoaded={this.state.isLoaded}
+            onLoad={this.handleImageLoad}
+            src={this.props.src}
+          />
+        </ImageContainer>
+      </Link>
     );
   }
 }
@@ -45,14 +52,6 @@ const pulse = keyframes`
     }
 `;
 
-const StyledImg = styled.img`
-  width: 300px;
-  height: auto;
-  display: ${ifProp('isLoaded', 'block', 'none')};
-  border: solid 1px ${Colors.gray};
-  padding: 15px;
-`;
-
 const ImageContainer = styled.div`
   display: flex;
   align-items: center;
@@ -65,4 +64,12 @@ const ImageContainer = styled.div`
   &:hover {
     cursor: pointer;
   }
+`;
+
+const StyledImg = styled.img`
+  width: 300px;
+  height: auto;
+  display: ${ifProp('isLoaded', 'block', 'none')};
+  border: solid 1px ${Colors.gray};
+  padding: 15px;
 `;

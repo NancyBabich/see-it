@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ImagesContainer from './containers/ImagesContainer';
+import App from './App';
 import globalStyle from './styles/globalStyle';
 
-ReactDOM.render(<ImagesContainer />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));

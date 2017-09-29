@@ -9,7 +9,7 @@ const HeaderContainer = styled.div`
   width: 100%;
   text-align: center;
   text-transform: uppercase;
-  font-family: 'Nunito';
+
   font-size: 2rem;
   font-weight: 700;
 `;
