@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import fbAsyncInit from '../helpers/fbAsyncInit';
 import IndividualImage from '../components/IndividualImage/IndividualImage';
-import shareOnFacebook from '../helpers/shareOnFacebook';
 
 export default class IndividualImageContainer extends Component {
   constructor(props) {
@@ -19,7 +17,6 @@ export default class IndividualImageContainer extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    fbAsyncInit();
     this.fetchImage(this.props.match.params.imageId);
   }
 
@@ -57,7 +54,6 @@ export default class IndividualImageContainer extends Component {
         isLoading={isLoading}
         likes={likes}
         src={src}
-        shareOnFacebook={shareOnFacebook}
         width={width}
       />
     );

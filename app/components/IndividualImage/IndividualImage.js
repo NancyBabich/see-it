@@ -5,17 +5,7 @@ import styled from 'styled-components';
 import Colors from '../../consts/colors';
 import Loader from '../Loader';
 
-const IndividualImage = ({
-  author,
-  height,
-  src,
-  width,
-  isLoading,
-  likes,
-  shareOnFacebook
-}) => {
-  const { FacebookShareButton, TwitterShareButton } = ShareButtons;
-
+const IndividualImage = ({ author, height, src, width, isLoading, likes }) => {
   return (
     <StyledContainer>
       {isLoading && <Loader initial />}
