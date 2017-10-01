@@ -1,4 +1,5 @@
 import React from 'react';
+import { ShareButtons } from 'react-share';
 import styled from 'styled-components';
 
 import Colors from '../../consts/colors';
@@ -12,24 +13,31 @@ const IndividualImage = ({
   isLoading,
   likes,
   shareOnFacebook
-}) => (
-  <StyledContainer>
-    {isLoading && <Loader initial />}
-    {!isLoading && src ? (
-      <StyledContainer>
-        <Image src={src} />
-        <StyledDiv>By {author}</StyledDiv>
-        <StyledDiv>
-          Original size: {width} x {height}px
-        </StyledDiv>
-        <StyledDiv>{likes ? likes : 0} likes</StyledDiv>
-        <ShareButton onClick={() => shareOnFacebook(src)}>
-          Share the image on Facebook
-        </ShareButton>
-      </StyledContainer>
-    ) : null}
-  </StyledContainer>
-);
+}) => {
+  const { FacebookShareButton, TwitterShareButton } = ShareButtons;
+
+  return (
+    <StyledContainer>
+      {isLoading && <Loader initial />}
+      {!isLoading && src ? (
+        <StyledContainer>
+          <Image src={src} />
+          <StyledDiv>By {author}</StyledDiv>
+          <StyledDiv>
+            Original size: {width} x {height}px
+          </StyledDiv>
+          <StyledDiv>{likes ? likes : 0} likes</StyledDiv>
+          <StyledFacebookShareButton url={src} picture={src}>
+            Share on Facebook
+          </StyledFacebookShareButton>
+          <StyledTwitterShareButton url={src}>
+            Share on Twitter
+          </StyledTwitterShareButton>
+        </StyledContainer>
+      ) : null}
+    </StyledContainer>
+  );
+};
 
 export default IndividualImage;
 
@@ -55,7 +63,21 @@ const Image = styled.img`
   }
 `;
 
-const ShareButton = styled.div`
+const StyledContainer = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+
+  @media screen and (max-width: 475px) {
+    font-size: 0.75rem;
+  }
+`;
+const StyledDiv = styled.div`
+  width: 100%;
+  text-align: center;
+`;
+
+const StyledFacebookShareButton = styled(ShareButtons.FacebookShareButton)`
   border: solid 1px ${Colors.darkGray};
   padding: 10px 5px 10px 5px;
   margin: 20px auto;
@@ -73,16 +95,20 @@ const ShareButton = styled.div`
   }
 `;
 
-const StyledContainer = styled.div`
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-
-  @media screen and (max-width: 475px) {
-    font-size: 0.75rem;
-  }
-`;
-const StyledDiv = styled.div`
-  width: 100%;
+const StyledTwitterShareButton = styled(ShareButtons.TwitterShareButton)`
+  border: solid 1px ${Colors.darkGray};
+  padding: 10px 5px 10px 5px;
+  margin: 20px auto;
+  width: 300px;
   text-align: center;
+
+  &:hover {
+    cursor: pointer;
+    border: solid 1px ${Colors.gray};
+    color: ${Colors.gray};
+  }
+
+  @media screen and (max-width: 325px) {
+    width: 250px;
+  }
 `;
