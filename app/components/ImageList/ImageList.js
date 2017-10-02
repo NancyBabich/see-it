@@ -41,6 +41,7 @@ const ImageListContainer = styled.div`
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
+  min-height: 101vh;
   margin-top: 200px;
 `;
 
