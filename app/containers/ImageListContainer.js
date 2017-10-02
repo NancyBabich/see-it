@@ -77,7 +77,7 @@ export default class ImagesContainer extends Component {
 
   handleScroll = () => {
     if (
-      window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+      window.innerHeight + window.scrollY >= document.body.offsetHeight - 300 &&
       this.state.images.length &&
       !this.state.isLoading
     ) {
