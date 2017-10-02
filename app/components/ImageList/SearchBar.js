@@ -18,17 +18,20 @@ export default class SearchBar extends Component {
   handleSubmit = e => {
     const { setCategory } = this.props;
     const { input } = this.state;
+
     e.preventDefault();
     setCategory(input);
+    this.setState({ input: '' });
   };
 
   render() {
-    const { value } = this.state;
+    const { input } = this.state;
+
     return (
       <SearchBarContainer>
         <form onSubmit={this.handleSubmit}>
           <Input
-            value={value}
+            value={input}
             type="text"
             placeholder="Search for photos"
             onChange={this.handleChange}
@@ -45,6 +48,10 @@ const Input = styled.input`
   height: 2rem;
   border: 1px solid ${Colors.darkGray};
   text-align: center;
+
+  &:focus {
+    outline: none;
+  }
 
   @media screen and (max-width: 365px) {
     width: 15rem;
