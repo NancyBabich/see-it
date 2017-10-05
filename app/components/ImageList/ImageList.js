@@ -11,6 +11,7 @@ const ImageList = ({ category, images, isLoading, setCategory, status }) => {
     <Container>
       <Header setCategory={setCategory} />
       <ImageListContainer>
+        {/* <Loader initial /> */}
         {isLoading && !images.length ? <Loader initial /> : null}
         {!isLoading &&
           images.map((image, i) => (

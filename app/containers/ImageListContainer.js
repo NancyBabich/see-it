@@ -19,6 +19,7 @@ export default class ImagesContainer extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.distributeEventListeners('add');
     this.fetchImages(this.state.category, 1);
   }

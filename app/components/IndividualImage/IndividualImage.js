@@ -7,7 +7,7 @@ import SocialButtons from './SocialButtons';
 
 const IndividualImage = ({ author, height, src, width, isLoading, likes }) => (
   <StyledContainer>
-    {isLoading && <Loader initial />}
+    {isLoading && <Loader />}
     {!isLoading && src ? (
       <StyledContainer>
         <Image src={src} />
