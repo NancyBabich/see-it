@@ -13,8 +13,8 @@ const ImageList = ({ category, images, isLoading, setCategory, status }) => {
       <ImageListContainer>
         {isLoading && !images.length ? <Loader initial /> : null}
         {!isLoading &&
-          images.map(image => (
-            <Image id={image.id} key={image.id} src={image.urls.raw} />
+          images.map((image, i) => (
+            <Image id={image.id} key={i} src={image.urls.raw} />
           ))}
         {!isLoading && !images.length && status === 200 ? (
           <MessageContainer>
