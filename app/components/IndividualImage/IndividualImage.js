@@ -1,33 +1,27 @@
 import React from 'react';
-import { ShareButtons } from 'react-share';
 import styled from 'styled-components';
 
-import Colors from '../../consts/colors';
+import ImageDetails from './ImageDetails';
 import Loader from '../Loader';
+import SocialButtons from './SocialButtons';
 
-const IndividualImage = ({ author, height, src, width, isLoading, likes }) => {
-  return (
-    <StyledContainer>
-      {isLoading && <Loader initial />}
-      {!isLoading && src ? (
-        <StyledContainer>
-          <Image src={src} />
-          <StyledDiv>By {author}</StyledDiv>
-          <StyledDiv>
-            Original size: {width} x {height}px
-          </StyledDiv>
-          <StyledDiv>{likes ? likes : 0} likes</StyledDiv>
-          <StyledFacebookShareButton url={src} picture={src}>
-            Share on Facebook
-          </StyledFacebookShareButton>
-          <StyledTwitterShareButton url={src}>
-            Share on Twitter
-          </StyledTwitterShareButton>
-        </StyledContainer>
-      ) : null}
-    </StyledContainer>
-  );
-};
+const IndividualImage = ({ author, height, src, width, isLoading, likes }) => (
+  <StyledContainer>
+    {isLoading && <Loader initial />}
+    {!isLoading && src ? (
+      <StyledContainer>
+        <Image src={src} />
+        <ImageDetails
+          author={author}
+          height={height}
+          likes={likes}
+          width={width}
+        />
+        <SocialButtons src={src} />
+      </StyledContainer>
+    ) : null}
+  </StyledContainer>
+);
 
 export default IndividualImage;
 
@@ -60,45 +54,5 @@ const StyledContainer = styled.div`
 
   @media screen and (max-width: 475px) {
     font-size: 0.75rem;
-  }
-`;
-const StyledDiv = styled.div`
-  width: 100%;
-  text-align: center;
-`;
-
-const StyledFacebookShareButton = styled(ShareButtons.FacebookShareButton)`
-  border: solid 1px ${Colors.darkGray};
-  padding: 10px 5px 10px 5px;
-  margin: 20px auto;
-  width: 300px;
-  text-align: center;
-
-  &:hover {
-    cursor: pointer;
-    border: solid 1px ${Colors.gray};
-    color: ${Colors.gray};
-  }
-
-  @media screen and (max-width: 325px) {
-    width: 250px;
-  }
-`;
-
-const StyledTwitterShareButton = styled(ShareButtons.TwitterShareButton)`
-  border: solid 1px ${Colors.darkGray};
-  padding: 10px 5px 10px 5px;
-  margin: 20px auto;
-  width: 300px;
-  text-align: center;
-
-  &:hover {
-    cursor: pointer;
-    border: solid 1px ${Colors.gray};
-    color: ${Colors.gray};
-  }
-
-  @media screen and (max-width: 325px) {
-    width: 250px;
   }
 `;
