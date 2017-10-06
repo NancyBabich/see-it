@@ -36,7 +36,7 @@ export default class IndividualImageContainer extends Component {
         this.setState({
           author: image.user.first_name,
           likes: image.likes,
-          src: image.urls.raw,
+          src: image.urls.regular,
           width: image.width,
           height: image.height,
           isLoading: false
