@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { throttle } from 'lodash';
 
 import ImageList from '../components/ImageList/ImageList';
+import { setSearchCategory } from '../actions/index';
 
-export default class ImagesContainer extends Component {
+class ImageListContainer extends Component {
   constructor(props) {
     super(props);
     this.handleScroll = throttle(this.handleScroll, 300);
     this.state = {
-      category: 'cities',
       images: [],
       isAllDisplayed: false,
       isLoading: true,
@@ -21,7 +22,7 @@ export default class ImagesContainer extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     this.distributeEventListeners('add');
-    this.fetchImages(this.state.category, 1);
+    this.fetchImages(this.props.category, 1);
   }
 
   componentWillUnmount() {
@@ -82,17 +83,19 @@ export default class ImagesContainer extends Component {
       this.state.images.length &&
       !this.state.isLoading
     ) {
-      this.fetchImages(this.state.category, this.state.page + 1);
+      this.fetchImages(this.props.category, this.state.page + 1);
     }
   };
 
   setCategory = category => {
-    this.setState({ images: [], category, isLoading: true });
+    this.props.dispatch(setSearchCategory(category));
+    this.setState({ images: [], isLoading: true });
     this.fetchImages(category, 1);
   };
 
   render() {
-    const { category, images, isLoading, status } = this.state;
+    const { images, isLoading, status } = this.state;
+    const { category } = this.props;
 
     return (
       <ImageList
@@ -106,3 +109,9 @@ export default class ImagesContainer extends Component {
     );
   }
 }
+
+export default connect(state => {
+  return {
+    category: state.category
+  };
+})(ImageListContainer);
