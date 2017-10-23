@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --inline --hot --open",
     "prettier": "prettier --single-quote --write ./app/**/*.js",
     "lint": "eslint **/*.js",
-    "test": "mocha --require mocha.init.js --compilers js:babel-core/register app/__tests__/*.test.js"
+    "test": "jest"
   },
   "keywords": [
     "React.js"
@@ -43,6 +43,7 @@
     "mocha": "3.5.3",
     "prettier": "^1.5.3",
     "react-redux": "^5.0.6",
+    "react-test-renderer": "^16.0.0",
     "redux": "^3.7.2",
     "regenerator-runtime": "^0.11.0",
     "webpack": "^1.14.0",
