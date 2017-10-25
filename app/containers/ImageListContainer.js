@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { throttle } from 'lodash';
 
 import axiosConfig from '../consts/axiosConfig';
-import fetchRequest from '../helpers/fetchRequest';
 import ImageList from '../components/ImageList/ImageList';
 import { setSearchCategory } from '../actions/index';
 
