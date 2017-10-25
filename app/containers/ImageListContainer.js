@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { throttle } from 'lodash';
 
+import axiosConfig from '../consts/axiosConfig';
+import fetchRequest from '../helpers/fetchRequest';
 import ImageList from '../components/ImageList/ImageList';
 import { setSearchCategory } from '../actions/index';
 
@@ -37,40 +40,30 @@ class ImageListContainer extends Component {
 
   fetchImages = (category, page) => {
     if (!this.state.isAllDisplayed) {
-      const url = 'https://api.unsplash.com/search/photos';
+      const root = 'https://api.unsplash.com/search/photos';
       const perPage = 15;
-      const request = new Request(
-        `${url}/?query=${category}&page=${page}&per_page=${perPage}`,
-        {
-          method: 'GET',
-          headers: new Headers({
-            Authorization:
-              'Client-ID e6265d8a013e80cb7c27328768e0aa508ce426d36e58106d377a5d137e421c59'
-          })
-        }
-      );
+      const url = `${root}/?query=${category}&page=${page}&per_page=${perPage}`;
 
-      fetch(request)
+      axios
+        .get(url, axiosConfig)
         .then(res => {
-          this.setState({ status: res.status });
-          return res.json();
-        })
-        .then(res => {
-          const isAllDisplayed = res.total_pages === page;
+          const isAllDisplayed = res.data.total_pages === page;
           page === 1
             ? this.setState({
-                images: res.results,
+                images: res.data.results,
                 page,
-                totalPages: res.total_pages,
+                totalPages: res.data.total_pages,
                 isLoading: false,
-                isAllDisplayed
+                isAllDisplayed,
+                status: res.status
               })
             : this.setState(prevState => ({
-                images: [...prevState.images, ...res.results],
+                images: [...prevState.images, ...res.data.results],
                 page,
-                totalPages: res.total_pages,
+                totalPages: res.data.total_pages,
                 isLoading: false,
-                isAllDisplayed
+                isAllDisplayed,
+                status: res.status
               }));
         })
         .catch(err => console.log(err));

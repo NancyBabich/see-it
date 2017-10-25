@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
+import axiosConfig from '../consts/axiosConfig';
 import IndividualImage from '../components/IndividualImage/IndividualImage';
 
 export default class IndividualImageContainer extends Component {
@@ -22,23 +24,16 @@ export default class IndividualImageContainer extends Component {
 
   fetchImage = id => {
     const url = `https://api.unsplash.com/photos/${id}`;
-    const request = new Request(`${url}/`, {
-      method: 'GET',
-      headers: new Headers({
-        Authorization:
-          'Client-ID e6265d8a013e80cb7c27328768e0aa508ce426d36e58106d377a5d137e421c59'
-      })
-    });
 
-    fetch(request)
-      .then(res => res.json())
-      .then(image => {
+    axios
+      .get(url, axiosConfig)
+      .then(res => {
         this.setState({
-          author: image.user.first_name,
-          likes: image.likes,
-          src: image.urls.regular,
-          width: image.width,
-          height: image.height,
+          author: res.data.user.first_name,
+          likes: res.data.likes,
+          src: res.data.urls.regular,
+          width: res.data.width,
+          height: res.data.height,
           isLoading: false
         });
       })

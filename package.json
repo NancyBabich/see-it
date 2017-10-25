@@ -7,14 +7,14 @@
     "start": "webpack-dev-server --inline --hot --open",
     "prettier": "prettier --single-quote --write ./app/**/*.js",
     "lint": "eslint **/*.js",
-    "test": "mocha --require mocha.init.js --compilers js:babel-core/register app/__tests__/*.test.js"
+    "test":
+      "mocha --require mocha.init.js --compilers js:babel-core/register app/__tests__/*.test.js"
   },
-  "keywords": [
-    "React.js"
-  ],
+  "keywords": ["React.js"],
   "author": "Maciek Maslowski",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.17.0",
     "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
