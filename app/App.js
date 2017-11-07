@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { configure } from './store/configureStore';
 import IndividualImageContainer from './containers/IndividualImageContainer';
 import ImagesContainer from './containers/ImageListContainer';
-import LandingContainer from './containers/LandingContainer';
 
 const App = () => {
   const store = configure();
