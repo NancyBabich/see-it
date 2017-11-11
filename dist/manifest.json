@@ -1,0 +1,45 @@
+{
+  "name": "see it!",
+  "short_name": "SeeIt!",
+  "start-url": "/index.html",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FFF",
+  "dir": "ltr",
+  "lang": "en-US",
+  "theme_color": "#3F51B5",
+  "description": "Watch all the pictures from Unsplash.com",
+  "icons": [
+    {
+      "src": "/images/icons/icon-256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "/images/icons/icon-128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/images/icons/icon-96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/images/icons/icon-72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "/images/icons/icon-64.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "/images/icons/icon-48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    }
+  ]
+}
